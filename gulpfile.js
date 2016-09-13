@@ -33,7 +33,7 @@ gulp.task("babel", ["lint"], function() {
     }));
 });
 
-gulp.task("watch", ["browserSync"], function() {
+gulp.task("watch", ["babel", "browserSync"], function() {
   gulp.watch("src/js/**/*.es6.js", ["babel"]);
   gulp.watch("src/*.html", browserSync.reload);
 });
