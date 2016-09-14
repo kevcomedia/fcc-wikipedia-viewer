@@ -2,6 +2,17 @@
 (function WikipediaViewer() {
   "use strict";
 
+  const SUBMIT = $(".searchBox-submit");
+  const INPUT = $(".searchBox-input");
+  const RESULTS = $(".results");
+
+  SUBMIT.click(function displayResults() {
+    RESULTS.empty();
+
+    fetchData(INPUT.val())
+    .then(data => data.forEach(createResultDiv));
+  });
+
   function fetchData(searchTerm) {
     // opensearch an array with the following form:
     // [searchTerm, [titles...], [descriptions...], [links...]]
@@ -27,5 +38,28 @@
         url: urls[index]
       }));
     });
+  }
+
+  function createResultDiv({title, description, url}) {
+    var div = $("<div></div>")
+      .addClass("results-item")
+      .appendTo(RESULTS);
+
+    var divTitle = $("<h2></h2>")
+      .addClass("results-item-title")
+      .appendTo(div);
+
+    $("<a></a>")
+      .attr({
+        href: url,
+        target: "_blank"
+      })
+      .text(title)
+      .appendTo(divTitle);
+
+    $("<p></p>")
+      .addClass("results-item-description")
+      .text(description)
+      .appendTo(div);
   }
 })();
