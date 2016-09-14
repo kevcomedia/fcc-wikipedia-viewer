@@ -1,0 +1,51 @@
+@import "palette";
+
+body {
+  background-color: $bgcolor;
+  margin: 0 20%;
+}
+
+h1 {
+  font-family: serif;
+  background-color: $panelcolor;
+  color: $textcolor;
+  text-align: center;
+  padding: 20px 0;
+  margin-bottom: 0;
+}
+
+.searchBox {
+  background-color: $panelcolor;
+  margin-top: 0;
+  padding-bottom: 10px;
+  display: flex;
+  justify-content: center;
+
+  .searchBox-input {
+    background-color: inherit;
+    border: 0;
+    border-bottom: 2px solid lightgray;
+    padding-left: 5px;
+    width: 50%;
+
+    &:focus {
+      border-bottom-color: $buttoncolor;
+    }
+  }
+
+  button {
+    border: 0;
+    margin-left: 5px;
+    background-color: $buttoncolor;
+    color: $linkcolor;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+  }
+}
+
+.results {
+  .results-item {
+    background-color: $panelcolor;
+  }
+}
