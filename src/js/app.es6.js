@@ -3,6 +3,7 @@
   "use strict";
 
   const SUBMIT = $(".searchBox-submit");
+  const RANDOM = $(".searchBox-random");
   const INPUT = $(".searchBox-input");
   const RESULTS = $(".results");
 
@@ -11,6 +12,10 @@
 
     fetchData(INPUT.val())
     .then(data => data.forEach(createResultDiv));
+  });
+
+  RANDOM.click(function() {
+    window.open("https://en.wikipedia.org/wiki/Special:Random");
   });
 
   function fetchData(searchTerm) {
