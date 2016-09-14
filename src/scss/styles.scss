@@ -14,13 +14,14 @@ h1 {
   color: $textcolor;
   text-align: center;
   padding: 20px 0;
-  margin-bottom: 0;
+  margin: 0;
 }
 
 .searchBox {
   background-color: $panelcolor;
   margin-top: 0;
   padding-bottom: 10px;
+  border-bottom: 2px solid $buttoncolor;
   display: flex;
   justify-content: center;
 
@@ -49,9 +50,12 @@ h1 {
 
 .results {
   flex: auto;
-  margin: 20px auto;
   overflow: auto;
+
   .results-item {
     background-color: $panelcolor;
+    padding: 5px 30px;
+    margin: 0;
+    border-bottom: 2px solid $buttoncolor;
   }
 }
