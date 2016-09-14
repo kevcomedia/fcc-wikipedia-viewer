@@ -1,6 +1,8 @@
 const gulp = require("gulp"),
   jshint = require("gulp-jshint"),
   stylish = require("jshint-stylish"),
+  sass = require("gulp-sass"),
+  autoprefixer = require("gulp-autoprefixer"),
   babel = require("gulp-babel"),
   rename = require("gulp-regex-rename"),
   browserSync = require("browser-sync").create();
@@ -11,6 +13,18 @@ gulp.task("browserSync", function() {
       baseDir: "src"
     }
   });
+});
+
+gulp.task("sass", function() {
+  return gulp.src("src/scss/**/*.scss")
+    .pipe(sass())
+    .pipe(autoprefixer({
+      browsers: ["> 1%"]
+    }))
+    .pipe(gulp.dest("src/css"))
+    .pipe(browserSync.reload({
+      stream: true
+    }));
 });
 
 gulp.task("lint", function() {
@@ -33,7 +47,8 @@ gulp.task("babel", ["lint"], function() {
     }));
 });
 
-gulp.task("watch", ["babel", "browserSync"], function() {
+gulp.task("watch", ["sass", "babel", "browserSync"], function() {
+  gulp.watch("src/scss/**/*.scss", ["sass"]);
   gulp.watch("src/js/**/*.es6.js", ["babel"]);
   gulp.watch("src/*.html", browserSync.reload);
 });

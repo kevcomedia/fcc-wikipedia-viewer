@@ -1,3 +1,5 @@
 node_modules
 src/js/**/*
 !src/js/**/*.es6.js
+src/css/**/*
+!src/css/normalize.css

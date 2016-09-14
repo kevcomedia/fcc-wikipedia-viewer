@@ -1,0 +1,114 @@
+@import "palette";
+@import 'https://fonts.googleapis.com/css?family=Open+Sans|Source+Serif+Pro';
+
+@mixin breakpoint($size) {
+  @if $size == mobile {
+    @media(max-width: 768px) { @content; }
+  }
+  @else if $size == mobile-landscape {
+    @media (orientation: landscape) and (max-width: 768px) { @content; }
+  }
+}
+
+body {
+  background-color: $bgcolor;
+  margin: 0 20%;
+  display: flex;
+  flex-flow: column nowrap;
+  height: 100vh;
+  font-family: "Open Sans", sans-serif;
+
+  @include breakpoint(mobile) {
+    margin: 0;
+    background-color: $panelcolor;
+  }
+}
+
+header {
+  @include breakpoint(mobile-landscape) {
+    display: flex;
+    flex-flow: row nowrap;
+    padding: 10px;
+  }
+}
+
+h1 {
+  font-family: "Source Serif Pro", serif;
+  background-color: $panelcolor;
+  color: $textcolor;
+  text-align: center;
+  padding: 20px 0;
+  margin: 0;
+
+  @include breakpoint(mobile-landscape) {
+    font-size: 1.6em;
+    padding: 0;
+    margin: auto;
+  }
+}
+
+.searchBox {
+  background-color: $panelcolor;
+  margin-top: 0;
+  padding-bottom: 15px;
+  display: flex;
+  justify-content: center;
+
+  @include breakpoint(mobile) {
+    padding: 0 10px 10px;
+  }
+  @include breakpoint(mobile-landscape) {
+    padding: 0;
+    flex: auto;
+    margin-left: 50px;
+  }
+
+  .searchBox-input {
+    background-color: inherit;
+    border: 0;
+    border-bottom: 2px solid lightgray;
+    padding-left: 5px;
+    width: 50%;
+
+    @include breakpoint(mobile) {
+      flex: auto;
+    }
+
+    &:focus {
+      border-bottom-color: $buttoncolor;
+    }
+  }
+
+  button {
+    border: 0;
+    margin-left: 5px;
+    background-color: $buttoncolor;
+    color: $linkcolor;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+  }
+}
+
+.results {
+  flex: auto;
+  overflow: auto;
+  border-top: 2px solid $buttoncolor;
+
+  .results-item {
+    line-height: 1.6em;
+    background-color: $panelcolor;
+    padding: 5px 30px;
+    margin: 0;
+    border-bottom: 2px solid $buttoncolor;
+
+    @include breakpoint(mobile) {
+      padding: 10px;
+    }
+
+    a {
+      font-family: "Source Serif Pro", serif;
+      color: $linkcolor;
+    }
+  }
+}
