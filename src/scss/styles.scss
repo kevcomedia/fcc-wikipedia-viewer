@@ -5,6 +5,9 @@
   @if $size == mobile {
     @media(max-width: 768px) { @content; }
   }
+  @else if $size == mobile-landscape {
+    @media (orientation: landscape) and (max-width: 768px) { @content; }
+  }
 }
 
 body {
@@ -18,6 +21,13 @@ body {
   @include breakpoint(mobile) {
     margin: 0;
     background-color: $panelcolor;
+  }
+}
+
+header {
+  @include breakpoint(mobile-landscape) {
+    display: flex;
+    flex-flow: row nowrap;
   }
 }
 
