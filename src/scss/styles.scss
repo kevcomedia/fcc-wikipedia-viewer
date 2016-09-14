@@ -3,6 +3,9 @@
 body {
   background-color: $bgcolor;
   margin: 0 20%;
+  display: flex;
+  flex-flow: column nowrap;
+  height: 100vh;
 }
 
 h1 {
@@ -45,6 +48,9 @@ h1 {
 }
 
 .results {
+  flex: auto;
+  margin: 20px auto;
+  overflow: auto;
   .results-item {
     background-color: $panelcolor;
   }
