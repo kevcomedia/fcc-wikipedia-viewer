@@ -60,7 +60,7 @@ h1 {
   @include breakpoint(mobile-landscape) {
     padding: 0;
     flex: auto;
-    margin-left: 10px;
+    margin-left: 50px;
   }
 
   .searchBox-input {
