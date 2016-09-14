@@ -5,6 +5,9 @@
   @if $size == mobile {
     @media(max-width: 768px) { @content; }
   }
+  @else if $size == mobile-landscape {
+    @media (orientation: landscape) and (max-width: 768px) { @content; }
+  }
 }
 
 body {
@@ -21,6 +24,14 @@ body {
   }
 }
 
+header {
+  @include breakpoint(mobile-landscape) {
+    display: flex;
+    flex-flow: row nowrap;
+    padding: 10px;
+  }
+}
+
 h1 {
   font-family: "Source Serif Pro", serif;
   background-color: $panelcolor;
@@ -28,18 +39,28 @@ h1 {
   text-align: center;
   padding: 20px 0;
   margin: 0;
+
+  @include breakpoint(mobile-landscape) {
+    font-size: 1.6em;
+    padding: 0;
+    margin: auto;
+  }
 }
 
 .searchBox {
   background-color: $panelcolor;
   margin-top: 0;
-  padding-bottom: 10px;
-  border-bottom: 2px solid $buttoncolor;
+  padding-bottom: 15px;
   display: flex;
   justify-content: center;
 
   @include breakpoint(mobile) {
     padding: 0 10px 10px;
+  }
+  @include breakpoint(mobile-landscape) {
+    padding: 0;
+    flex: auto;
+    margin-left: 50px;
   }
 
   .searchBox-input {
@@ -72,6 +93,7 @@ h1 {
 .results {
   flex: auto;
   overflow: auto;
+  border-top: 2px solid $buttoncolor;
 
   .results-item {
     line-height: 1.6em;
