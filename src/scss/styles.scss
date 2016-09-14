@@ -41,7 +41,9 @@ h1 {
   margin: 0;
 
   @include breakpoint(mobile-landscape) {
+    font-size: 1.6em;
     padding: 0;
+    margin: auto;
   }
 }
 
