@@ -4,3 +4,4 @@ src/js/*
 !src/js/lib
 src/css/*
 !src/css/lib
+dist
