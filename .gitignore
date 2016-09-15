@@ -2,5 +2,5 @@ node_modules
 src/js/*
 !src/js/*.es6.js
 !src/js/lib
-src/css/**/*
-!src/css/normalize.css
+src/css/*
+!src/css/lib
