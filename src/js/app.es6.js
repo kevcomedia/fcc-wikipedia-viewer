@@ -8,10 +8,15 @@
   const RESULTS = $(".results");
 
   SUBMIT.click(function displayResults() {
-    RESULTS.empty();
+    RESULTS.empty()
+      .append($("<div class='results-spinner'>")
+        .append($("<span class='fa fa-circle-o-notch fa-spin fa-3x fa-fw'>")));
 
     fetchData(INPUT.val())
-    .then(data => data.forEach(createResultDiv));
+    .then(data => {
+       RESULTS.empty();
+       data.forEach(createResultDiv);
+    });
   });
 
   INPUT.keypress(function(e) {
