@@ -1,10 +1,17 @@
 const gulp = require("gulp"),
+  gulpIf = require("gulp-if"),
   jshint = require("gulp-jshint"),
   stylish = require("jshint-stylish"),
   sass = require("gulp-sass"),
   autoprefixer = require("gulp-autoprefixer"),
   babel = require("gulp-babel"),
   rename = require("gulp-regex-rename"),
+  useref = require("gulp-useref"),
+  cssnano = require("gulp-cssnano"),
+  uglify = require("gulp-uglify"),
+  del = require("del"),
+  runSequence = require("run-sequence"),
+  deploy = require("gulp-gh-pages"),
   browserSync = require("browser-sync").create();
 
 gulp.task("browserSync", function() {
@@ -45,6 +52,27 @@ gulp.task("babel", ["lint"], function() {
     .pipe(browserSync.reload({
       stream: true
     }));
+});
+
+gulp.task("useref", function() {
+  return gulp.src("src/*.html")
+    .pipe(useref())
+    .pipe(gulpIf("*.js", uglify()))
+    .pipe(gulpIf("*.css", cssnano()))
+    .pipe(gulp.dest("dist"));
+});
+
+gulp.task("clean:dist", function() {
+  return del.sync("dist");
+});
+
+gulp.task("build", function(callback) {
+  runSequence("clean:dist", ["sass", "babel"], "useref", callback);
+});
+
+gulp.task("deploy", function() {
+  return gulp.src("dist/**/*")
+    .pipe(deploy());
 });
 
 gulp.task("watch", ["sass", "babel", "browserSync"], function() {
