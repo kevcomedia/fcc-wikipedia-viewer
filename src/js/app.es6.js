@@ -14,6 +14,12 @@
     .then(data => data.forEach(createResultDiv));
   });
 
+  INPUT.keypress(function(e) {
+    if (e.which == 13) {
+      SUBMIT.click();
+    }
+  });
+
   RANDOM.click(function() {
     window.open("https://en.wikipedia.org/wiki/Special:Random");
   });
