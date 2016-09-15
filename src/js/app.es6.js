@@ -16,10 +16,19 @@
 
     fetchData($input.val())
     .then(
-      data => {
-        $results.empty();
-        data.forEach(createResultDiv);
-      },
+      data =>
+        $results.empty()
+          .append($.map(data, ({title, description, url}) =>
+            $("<div class='results-item'>")
+              .append($("<h2 class='results-item-title'>")
+                .append($(`<a href="${url}" target="_blank">`)
+                  .text(title)
+                )
+              )
+              .append($("<p class='results-item-description'>")
+                .text(description)
+              )
+          )),
       data => $results.empty());
   });
 
@@ -58,28 +67,5 @@
         url: urls[index]
       }));
     });
-  }
-
-  function createResultDiv({title, description, url}) {
-    var div = $("<div></div>")
-      .addClass("results-item")
-      .appendTo($results);
-
-    var divTitle = $("<h2></h2>")
-      .addClass("results-item-title")
-      .appendTo(div);
-
-    $("<a></a>")
-      .attr({
-        href: url,
-        target: "_blank"
-      })
-      .text(title)
-      .appendTo(divTitle);
-
-    $("<p></p>")
-      .addClass("results-item-description")
-      .text(description)
-      .appendTo(div);
   }
 })();
