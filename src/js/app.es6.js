@@ -13,10 +13,12 @@
         .append($("<span class='fa fa-circle-o-notch fa-spin fa-3x fa-fw'>")));
 
     fetchData(INPUT.val())
-    .then(data => {
-       RESULTS.empty();
-       data.forEach(createResultDiv);
-    });
+    .then(
+      data => {
+        RESULTS.empty();
+        data.forEach(createResultDiv);
+      },
+      data => RESULTS.empty());
   });
 
   INPUT.keypress(function(e) {
