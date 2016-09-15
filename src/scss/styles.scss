@@ -6,7 +6,7 @@
     @media(max-width: 768px) { @content; }
   }
   @else if $size == mobile-landscape {
-    @media (orientation: landscape) and (max-width: 768px) { @content; }
+    @media (min-aspect-ratio: 13/9) and (max-width: 768px) { @content; }
   }
 }
 
